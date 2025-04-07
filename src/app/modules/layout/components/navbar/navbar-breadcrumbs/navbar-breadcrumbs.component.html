@@ -1,0 +1,11 @@
+<nav ubBreadcrumb>
+  <ol ubBreadcrumbList>
+    @for(crumb of breadcrumbs; track $index) {
+      <li ubBreadcrumbItem>
+        <a [href]="crumb.url" ubBreadcrumbLink>
+          {{ crumb.label }}
+        </a>
+      </li>
+      }
+  </ol>
+</nav>

@@ -1,0 +1,36 @@
+<div class="flex-col rounded-lg bg-background px-8 py-8 sm:flex-row">
+    <div class="mb-4 flex items-center justify-between">
+      <div class="flex-col items-center">
+        <h3 class="text-md font-bold text-foreground">Users List</h3>
+      </div>
+      <button ubButton>
+        New User
+      </button>
+    </div>
+  
+    <div class="relative overflow-x-auto">
+      <table class="w-full table-auto">
+        <thead class="text-xs uppercase text-muted-foreground">
+          <tr>
+            <th class="py-3 text-left">Name</th>
+            <th class="py-3 text-left">Email</th>
+          </tr>
+        </thead>
+        <tbody class="w-full table-auto">
+          @for (user of users; track $index) {
+            <tr
+             class="border-b border-dashed border-border hover:bg-card">
+                
+              <td class="py-2 pr-2">
+                <span href="#" class="text-foreground mb-1 text-sm font-semibold">{{ user.name }}</span>
+              </td>
+              <td class="py-2 pr-2">
+                <span href="#" class="text-foreground mb-1 text-sm font-semibold">{{ user.email }}</span>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

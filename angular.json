@@ -7,7 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "css"
+          "style": "scss"
         },
         "@schematics/angular:application": {
           "strict": true
@@ -34,7 +34,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/david-ui-angular/styles/_styles.scss"
             ],
             "scripts": [
               "node_modules/apexcharts/dist/apexcharts.min.js"

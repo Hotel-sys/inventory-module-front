@@ -1,1 +1,33 @@
-<p>users-form works!</p>
+<div ubDialogContent>
+  <div ubDialogHeader>
+    <h2 ubDialogTitle>Create User</h2>
+  </div>
+  <form class="flex flex-col gap-y-4" (ngSubmit)="onSubmit()">
+    <div class="flex flex-col gap-y-2">
+      <label for="name" class="text-sm text-gray-600 font-semibold tracking-wide leading-relaxed">
+        Nome Usuario
+      </label>
+      <input ubInput id="name" name="name" type="text" [(ngModel)]="userPayload.name" />
+    </div>
+    <div class="flex flex-col gap-y-2">
+      <label for="email" class="text-sm text-gray-600 font-semibold tracking-wide leading-relaxed">
+        Email
+      </label>
+      <input ubInput id="email" type="email" name="email" [(ngModel)]="userPayload.email" />
+    </div>
+    <div class="flex flex-col gap-y-2">
+      <label for="senha" class="text-sm text-gray-600 font-semibold tracking-wide leading-relaxed">
+        Senha
+      </label>
+      <input ubInput id="senha" type="password" name="password" [(ngModel)]="userPayload.password" />
+    </div>
+    <div class="flex flex-col gap-y-2">
+      <label for="senha" class="text-sm text-gray-600 font-semibold tracking-wide leading-relaxed">
+        Departments
+      </label>
+      <app-department-select (onDepartmentSelect)="test($event)" />
+    </div>
+
+    <button type="submit" ubButton variant="default" class="w-full mt-4 ">Submit</button>
+  </form>
+</div>

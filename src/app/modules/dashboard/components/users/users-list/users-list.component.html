@@ -1,38 +1,37 @@
-<div class="flex-col rounded-lg bg-background px-8 py-8 sm:flex-row">
-  <div class="mb-4 flex items-center justify-between">
-    <div class="flex-col items-center">
-      <h3 class="text-md font-bold text-foreground">Users List</h3>
-    </div>
-
-    <ubDialogTrigger ubButton [ubDialogTrigger]="dialog">
-      New User
-    </ubDialogTrigger>
-  </div>
-
-  <div class="relative overflow-x-auto">
-    <table ubTable>
-      <thead ubTableHeader>
-        <tr ubTableRow>
-          <th ubTableHead>Name</th>
-          <th ubTableHead>Email</th>
-        </tr>
-      </thead>
-      <tbody class="w-full table-auto" ubTableBody>
-        @for(user of users; track $index) {
-          <tr ubTableRow>
-            <td ubTableCell>
-              {{ user.name }}
-            </td>
-            <td ubTableCell>
-              {{ user.email }}
-            </td>
-          </tr>
-          }
-      </tbody>
-    </table>
-  </div>
-
-  <ng-template #dialog>
-    <app-users-form />
-  </ng-template>
+<div class="relative overflow-x-auto">
+  <table ubTable>
+    <thead ubTableHeader>
+      <tr ubTableRow>
+        <th ubTableHead>Name</th>
+        <th ubTableHead>Email</th>
+        <th ubTableHead>Company</th>
+        <th ubTableHead>Department</th>
+        <th ubTableHead>Actions</th>
+      </tr>
+    </thead>
+    <tbody class="w-full table-auto" ubTableBody>
+      @for(user of users; track $index) {
+      <tr ubTableRow>
+        <td ubTableCell>
+          {{ user.name }}
+        </td>
+        <td ubTableCell>
+          {{ user.email }}
+        </td>
+        <td ubTableCell>
+          {{ user.company?.name ?? '' }}
+        </td>
+        <td ubTableCell>
+          {{ user.department?.name ?? '' }}
+        </td>
+        <td ubTableCell>
+          <ubDialogTrigger ubButton size="sm" [ubDialogTrigger]="updateUser">Update</ubDialogTrigger>
+        </td>
+      </tr>
+      <ng-template #updateUser>
+        <app-users-form [defaultUser]="user"></app-users-form>
+      </ng-template>
+      }
+    </tbody>
+  </table>
 </div>

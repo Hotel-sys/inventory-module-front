@@ -1,3 +1,6 @@
+import { Company } from "./company";
+import { Department } from "./department";
+
 export class User {
   name!: string;
   email!: string;
@@ -5,10 +8,33 @@ export class User {
   createdAt!: string;
   updatedAt!: string;
   id!: string;
-  departmentId!: string;
+  department?: Department;
+  company?: Company;
 
   constructor(name?: string, email?: string) {
     this.name = name ?? '';
     this.email = email ?? '';
+    // this.department = {id: ''};
   }
 }
+
+export class UserPayload extends User {
+  //@ts-ignore
+  override department!: {id: string};
+
+  //@ts-ignore
+  override company!: {id: string};
+
+  constructor(name?: string, email?: string){
+    super(name, email)
+
+    this.department = {
+      id: ''
+    }
+
+    this.company = {
+      id: ''
+    }
+  }
+}
+

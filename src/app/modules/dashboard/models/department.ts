@@ -7,7 +7,4 @@ export class Department {
   users!: User[];
 }
 
-export interface IDepartmentOption {
-  key: string;
-  value: string;
-}
+

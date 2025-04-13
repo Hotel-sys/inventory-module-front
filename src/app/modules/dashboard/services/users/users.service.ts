@@ -4,7 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { buildEndpoint } from 'src/app/core/constants/api-routes';
 // import { IUser } from 'src/app/core/models/user.model';
 import { environment } from 'src/environments/environment';
-import { User } from '../../models/user';
+import { User, UserPayload } from '../../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -27,5 +27,11 @@ export class UsersService {
     const endpoint = buildEndpoint(this.apiUrl, 'USER_BY_ID', id);
 
     return this.httpClient.get<User>(endpoint);
+  }
+
+  public save(userPayload: UserPayload): Observable<User> {
+    const endpoint = buildEndpoint(this.apiUrl, 'USERS_LIST');
+
+    return this.httpClient.post<User>(endpoint, userPayload);
   }
 }

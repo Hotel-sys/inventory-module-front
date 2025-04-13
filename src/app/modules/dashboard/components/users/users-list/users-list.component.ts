@@ -1,3 +1,4 @@
+import { UbDialogContentDirective } from './../../../../../shared/components/dialog';
 import { Component, Input } from '@angular/core';
 // import { IUser } from 'src/app/core/models/user.model';
 import { UbButtonDirective } from 'src/app/shared/components/button';
@@ -11,6 +12,8 @@ import {
   UbTableHeadDirective,
   UbTableHeaderDirective,
   UbTableRowDirective,
+  // UbDialogTriggerDirective,
+  // UbDialogContentDirective
 } from 'src/app/shared/components/table';
 
 @Component({
@@ -25,6 +28,8 @@ import {
     UbTableHeaderDirective,
     UbTableBodyDirective,
     UbTableCellDirective,
+    UbDialogContentDirective,
+    UbDialogTriggerDirective,
   ],
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.css',

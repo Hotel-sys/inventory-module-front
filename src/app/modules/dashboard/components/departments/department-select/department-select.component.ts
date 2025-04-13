@@ -1,7 +1,8 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { DepartmentsService } from '../../../services/departments/departments.service';
-import { Department, IDepartmentOption } from '../../../models/department';
-import { FormsModule } from '@angular/forms';
+import { Department,  } from '../../../models/department';
+import { FormsModule, NgModel } from '@angular/forms';
+import { IOption } from 'src/app/core/models/globals.model';
 
 @Component({
   selector: 'app-department-select',
@@ -12,32 +13,18 @@ import { FormsModule } from '@angular/forms';
 export class DepartmentSelectComponent {
   private departmentService = inject(DepartmentsService);
 
-  departments: IDepartmentOption[] = [];
+  departments: IOption[] = [];
   departmentsList: string[] = [];
 
-  @Output() onDepartmentSelect = new EventEmitter<string>();
+  // @NgModel model: string;
+  @Output() model = new EventEmitter<string>();
 
-  constructor() {
-    this.getAll();
-  }
 
-  handleDepartmentSelect(event: Event) {
-    console.log(event);
-    this.onDepartmentSelect.emit((event.target as HTMLSelectElement).value);
-  }
 
-  private getAll() {
-    this.departmentService.getAll().subscribe({
-      next: (data) => {
-        this.departments = data.map((department: Department) => ({
-          key: department.id,
-          value: department.name,
-        }));
-        this.departmentsList = data.map((department: Department) => department.name);
-      },
-      error: (err) => {
-        console.error('Error fetching departments:', err);
-      },
-    });
-  }
+  // handleDepartmentSelect(event: Event) {
+  //   console.log(event);
+  //   this.onDepartmentSelect.emit((event.target as HTMLSelectElement).value);
+  // }
+
+
 }

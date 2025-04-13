@@ -4,13 +4,13 @@ type IRoute = {
 
 const ENDPOINTS: Record<string, IRoute> = {
   USERS_LIST: {
-    path: '/user',
+    path: '/users',
   },
   USER_BY_ID: {
-    path: (id) => `/user/${id}`,
+    path: (id) => `/users/${id}`,
   },
   COMPANY_LIST: {
-    path: '/companies',
+    path: '/company',
   },
   DEPARTMENTS_LIST: {
     path: '/department',

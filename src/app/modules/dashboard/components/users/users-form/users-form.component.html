@@ -4,30 +4,38 @@
   </div>
   <form class="flex flex-col gap-y-4" (ngSubmit)="onSubmit()">
     <div class="flex flex-col gap-y-2">
-      <label for="name" class="text-sm text-gray-600 font-semibold tracking-wide leading-relaxed">
-        Nome Usuario
-      </label>
+      <label for="name" class="text-sm font-semibold leading-relaxed tracking-wide text-gray-600"> Nome Usuario </label>
       <input ubInput id="name" name="name" type="text" [(ngModel)]="userPayload.name" />
     </div>
     <div class="flex flex-col gap-y-2">
-      <label for="email" class="text-sm text-gray-600 font-semibold tracking-wide leading-relaxed">
-        Email
-      </label>
+      <label for="email" class="text-sm font-semibold leading-relaxed tracking-wide text-gray-600"> Email </label>
       <input ubInput id="email" type="email" name="email" [(ngModel)]="userPayload.email" />
     </div>
     <div class="flex flex-col gap-y-2">
-      <label for="senha" class="text-sm text-gray-600 font-semibold tracking-wide leading-relaxed">
-        Senha
-      </label>
+      <label for="senha" class="text-sm font-semibold leading-relaxed tracking-wide text-gray-600"> Senha </label>
       <input ubInput id="senha" type="password" name="password" [(ngModel)]="userPayload.password" />
     </div>
     <div class="flex flex-col gap-y-2">
-      <label for="senha" class="text-sm text-gray-600 font-semibold tracking-wide leading-relaxed">
-        Departments
-      </label>
-      <app-department-select (onDepartmentSelect)="test($event)" />
+      <label for="senha" class="text-sm font-semibold leading-relaxed tracking-wide text-gray-600"> Departments </label>
+      <select [(ngModel)]="userPayload.department!.id" name="department" id="department" class="w-full">
+        @for(dep of departments; track $index) {
+        <option [ngValue]="dep.key">
+          {{ dep.value }}
+        </option>
+        }
+      </select>
+    </div>
+    <div class="flex flex-col gap-y-2">
+      <label for="senha" class="text-sm font-semibold leading-relaxed tracking-wide text-gray-600"> Company </label>
+      <select [(ngModel)]="userPayload.company!.id" name="department" id="department" class="w-full">
+        @for(comp of companies; track $index) {
+        <option [ngValue]="comp.key">
+          {{ comp.value }}
+        </option>
+        }
+      </select>
     </div>
 
-    <button type="submit" ubButton variant="default" class="w-full mt-4 ">Submit</button>
+    <button type="submit" ubButton variant="default" class="mt-4 w-full">Submit</button>
   </form>
 </div>

@@ -34,4 +34,10 @@ export class UsersService {
 
     return this.httpClient.post<User>(endpoint, userPayload);
   }
+
+  public delete(id: string): Observable<unknown> {
+    const endpoint = buildEndpoint(this.apiUrl, 'USER_BY_ID', id);
+
+    return this.httpClient.delete(id);
+  }
 }

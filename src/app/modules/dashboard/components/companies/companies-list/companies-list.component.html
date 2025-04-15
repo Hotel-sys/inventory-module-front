@@ -1,0 +1,41 @@
+<div class="relative overflow-x-auto">
+  <table ubTable>
+    <thead ubTableHeader>
+      <tr ubTableRow>
+        <th ubTableHead>ID</th>
+        <th ubTableHead>Name</th>
+        <th ubTableHead>Email</th>
+        <th ubTableHead>Industry</th>
+        <th ubTableHead>Actions</th>
+      </tr>
+    </thead>
+    <tbody class="w-full table-auto" ubTableBody>
+      @for(item of companies; track $index) {
+      <tr ubTableRow>
+        <td ubTableCell>
+          {{ item.id }}
+        </td>
+        <td ubTableCell>
+          {{ item.name }}
+        </td>
+        <td ubTableCell>
+          {{ item.email }}
+        </td>
+        <!-- <td ubTableCell>
+          {{  }}
+        </td> -->
+        <td ubTableCell>
+          {{ item.industry }}
+        </td>
+        <td ubTableCell>
+          <ubDialogTrigger ubButton size="sm" [ubDialogTrigger]="updateUser">Update</ubDialogTrigger>
+          <button ubButton (click)="handleDelete(item.id)">Delete</button>
+        </td>
+      </tr>
+      <ng-template #updateUser>
+        <app-companies-form [defaultCompany]="item"></app-companies-form>
+      </ng-template>
+      }
+    </tbody>
+  </table>
+</div>

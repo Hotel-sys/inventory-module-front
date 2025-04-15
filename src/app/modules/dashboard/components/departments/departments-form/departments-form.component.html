@@ -1,0 +1,19 @@
+<div ubDialogContent>
+  <div ubDialogHeader>
+    <h2 ubDialogTitle>Create Item</h2>
+  </div>
+  <form class="flex flex-col gap-y-4" (ngSubmit)="onSubmit()">
+    <div class="flex flex-col gap-y-2">
+      <label for="name" class="text-sm font-semibold leading-relaxed tracking-wide text-gray-600">
+        Department Name
+      </label>
+      <input ubInput id="name" name="name" type="text" [(ngModel)]="departmentPayload.name" />
+    </div>
+    <div class="flex flex-col gap-y-2">
+      <label for="email" class="text-sm font-semibold leading-relaxed tracking-wide text-gray-600"> Description </label>
+      <input ubInput id="description" type="text" name="description" [(ngModel)]="departmentPayload.description" />
+    </div>
+
+    <button type="submit" ubButton variant="default" class="mt-4 w-full">Submit</button>
+  </form>
+</div>

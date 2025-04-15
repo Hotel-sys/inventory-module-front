@@ -1,0 +1,34 @@
+<div class="relative overflow-x-auto">
+  <table ubTable>
+    <thead ubTableHeader>
+      <tr ubTableRow>
+        <th ubTableHead>ID</th>
+        <th ubTableHead>Name</th>
+        <th ubTableHead>Description</th>
+        <th ubTableHead>Actions</th>
+      </tr>
+    </thead>
+    <tbody class="w-full table-auto" ubTableBody>
+      @for(dept of departments; track $index) {
+      <tr ubTableRow>
+        <td ubTableCell>
+          {{ dept.id }}
+        </td>
+        <td ubTableCell>
+          {{ dept.name }}
+        </td>
+        <td ubTableCell>
+          {{ dept.description }}
+        </td>
+        <td ubTableCell>
+          <ubDialogTrigger ubButton size="sm" [ubDialogTrigger]="updateUser">Update</ubDialogTrigger>
+          <button ubButton (click)="handleDelete(dept.id)">Delete</button>
+        </td>
+      </tr>
+      <ng-template #updateUser>
+        <app-departments-form [defaultDepartment]="dept"></app-departments-form>
+      </ng-template>
+      }
+    </tbody>
+  </table>
+</div>

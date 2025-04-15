@@ -1,1 +1,15 @@
-<p>departments works!</p>
+<div class="bg-background flex-col rounded-lg px-8 py-8 sm:flex-row">
+  <div class="mb-4 flex items-center justify-between">
+    <div class="flex-col items-center">
+      <h3 class="text-md text-foreground font-bold">Users List</h3>
+    </div>
+
+    <ubDialogTrigger ubButton [ubDialogTrigger]="dialog"> New User </ubDialogTrigger>
+  </div>
+
+  <app-departments-list [departments]="departments()" />
+
+  <ng-template #dialog>
+    <app-departments-list (handleSubmit)="getAll()" />
+  </ng-template>
+</div>

@@ -61,7 +61,6 @@ export class UsersFormComponent {
   }
 
   private populateFields() {
-    console.log(this.defaultUser);
     if (this.defaultUser) {
       // we are editing...
 

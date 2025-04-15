@@ -1,0 +1,21 @@
+<div ubDialogContent>
+  <div ubDialogHeader>
+    <h2 ubDialogTitle>Create Company</h2>
+  </div>
+  <form class="flex flex-col gap-y-4" (ngSubmit)="onSubmit()">
+    <div class="flex flex-col gap-y-2">
+      <label for="name" class="text-sm font-semibold leading-relaxed tracking-wide text-gray-600"> Nome Usuario </label>
+      <input ubInput id="name" name="name" type="text" [(ngModel)]="companyPayload.name" />
+    </div>
+    <div class="flex flex-col gap-y-2">
+      <label for="email" class="text-sm font-semibold leading-relaxed tracking-wide text-gray-600"> Email </label>
+      <input ubInput id="email" type="text" name="email" [(ngModel)]="companyPayload.email" />
+    </div>
+    <div class="flex flex-col gap-y-2">
+      <label for="industry" class="text-sm font-semibold leading-relaxed tracking-wide text-gray-600"> Industry </label>
+      <input ubInput id="industry" type="text" name="industry" [(ngModel)]="companyPayload.industry" />
+    </div>
+
+    <button type="submit" ubButton variant="default" class="mt-4 w-full">Submit</button>
+  </form>
+</div>

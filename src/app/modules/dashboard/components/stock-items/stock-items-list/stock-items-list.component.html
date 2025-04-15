@@ -1,0 +1,42 @@
+<div class="relative overflow-x-auto">
+  <table ubTable>
+    <thead ubTableHeader>
+      <tr ubTableRow>
+        <th ubTableHead>Name</th>
+        <th ubTableHead>Quantity</th>
+        <th ubTableHead>Unit</th>
+        <th ubTableHead>Department</th>
+        <th ubTableHead>Archived</th>
+        <th ubTableHead>Actions</th>
+      </tr>
+    </thead>
+    <tbody class="w-full table-auto" ubTableBody>
+      @for(item of stockItems; track $index) {
+      <tr ubTableRow>
+        <td ubTableCell>
+          {{ item.name }}
+        </td>
+        <td ubTableCell>
+          {{ item.quantity }}
+        </td>
+        <td ubTableCell>
+          {{ item.unit }}
+        </td>
+        <!-- <td ubTableCell>
+          {{  }}
+        </td> -->
+        <td ubTableCell>
+          {{ item.department.name ?? '' }}
+        </td>
+        <td ubTableCell>
+          <ubDialogTrigger ubButton size="sm" [ubDialogTrigger]="updateUser">Update</ubDialogTrigger>
+          <button ubButton (click)="handleDelete(item.id)">Delete</button>
+        </td>
+      </tr>
+      <ng-template #updateUser>
+        <app-stock-items-form [defaultStockItem]="item"></app-stock-items-form>
+      </ng-template>
+      }
+    </tbody>
+  </table>
+</div>

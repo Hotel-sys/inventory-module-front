@@ -1,0 +1,38 @@
+<div ubDialogContent>
+  <div ubDialogHeader>
+    <h2 ubDialogTitle>Create Item</h2>
+  </div>
+  <form class="flex flex-col gap-y-4" (ngSubmit)="onSubmit()">
+    <div class="flex flex-col gap-y-2">
+      <label for="name" class="text-sm font-semibold leading-relaxed tracking-wide text-gray-600"> Nome Usuario </label>
+      <input ubInput id="name" name="name" type="text" [(ngModel)]="stockItemPayload.name" />
+    </div>
+    <div class="flex flex-col gap-y-2">
+      <label for="email" class="text-sm font-semibold leading-relaxed tracking-wide text-gray-600"> Description </label>
+      <input ubInput id="description" type="text" name="description" [(ngModel)]="stockItemPayload.description" />
+    </div>
+    <div class="flex flex-col gap-y-2">
+      <label for="quantity" class="text-sm font-semibold leading-relaxed tracking-wide text-gray-600"> Quantity </label>
+      <input ubInput id="quantity" type="number" name="quantity" [(ngModel)]="stockItemPayload.quantity" />
+    </div>
+    <div class="flex flex-col gap-y-2">
+      <label for="unit" class="text-sm font-semibold leading-relaxed tracking-wide text-gray-600"> Unit </label>
+      <input ubInput id="unit" type="text" name="unit" [(ngModel)]="stockItemPayload.unit" />
+    </div>
+    <div class="flex flex-col gap-y-2">
+      <label for="archived" class="text-sm font-semibold leading-relaxed tracking-wide text-gray-600"> Archived </label>
+    </div>
+    <div class="flex flex-col gap-y-2">
+      <label for="senha" class="text-sm font-semibold leading-relaxed tracking-wide text-gray-600"> Departments </label>
+      <select [(ngModel)]="stockItemPayload.department!.id" name="department" id="department" class="w-full">
+        @for(dep of departments; track $index) {
+        <option [ngValue]="dep.key">
+          {{ dep.value }}
+        </option>
+        }
+      </select>
+    </div>
+
+    <button type="submit" ubButton variant="default" class="mt-4 w-full">Submit</button>
+  </form>
+</div>

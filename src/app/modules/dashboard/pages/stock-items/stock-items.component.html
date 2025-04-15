@@ -1,1 +1,15 @@
-<p>stock-items works!</p>
+<div class="bg-background flex-col rounded-lg px-8 py-8 sm:flex-row">
+  <div class="mb-4 flex items-center justify-between">
+    <div class="flex-col items-center">
+      <h3 class="text-md text-foreground font-bold">Stock Catalog</h3>
+    </div>
+
+    <ubDialogTrigger ubButton [ubDialogTrigger]="dialog"> New User </ubDialogTrigger>
+  </div>
+
+  <app-stock-items-list [stockItems]="stockItems()" />
+
+  <ng-template #dialog>
+    <app-stock-items-form (handleSubmit)="getAll()" />
+  </ng-template>
+</div>

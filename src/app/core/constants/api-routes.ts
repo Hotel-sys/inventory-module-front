@@ -9,11 +9,23 @@ const ENDPOINTS: Record<string, IRoute> = {
   USER_BY_ID: {
     path: (id) => `/users/${id}`,
   },
+  STOCK_ITEMS_LIST: {
+    path: '/stockitems',
+  },
+  STOCK_ITEM_BY_ID: {
+    path: (id) => `/stockitems/${id}`,
+  },
   COMPANY_LIST: {
     path: '/company',
   },
+  COMPANY_BY_ID: {
+    path: (id) => `/company/${id}`,
+  },
   DEPARTMENTS_LIST: {
     path: '/department',
+  },
+  DEPARTMENT_BY_ID: {
+    path: (id) => `/department/${id}`,
   },
 };
 

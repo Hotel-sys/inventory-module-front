@@ -1,1 +1,15 @@
-<p>companies works!</p>
+<div class="bg-background flex-col rounded-lg px-8 py-8 sm:flex-row">
+  <div class="mb-4 flex items-center justify-between">
+    <div class="flex-col items-center">
+      <h3 class="text-md text-foreground font-bold">Companies List</h3>
+    </div>
+
+    <ubDialogTrigger ubButton [ubDialogTrigger]="dialog"> New Company </ubDialogTrigger>
+  </div>
+
+  <app-companies-list [companies]="companies()" />
+
+  <ng-template #dialog>
+    <app-companies-form handleSubmit)="getAll()" />
+  </ng-template>
+</div>

@@ -25,14 +25,16 @@
           {{ user.department?.name ?? '' }}
         </td>
         <td ubTableCell>
-          <ubDialogTrigger ubButton size="sm" [ubDialogTrigger]="updateUser" [ubDialogContext]="user"
+          @if (user) {
+          <ubDialogTrigger ubButton size="sm" [ubDialogTrigger]="updateUser" (click)="setSelectedUser(user)">
             >Update</ubDialogTrigger
           >
+          }
         </td>
       </tr>
 
-      <ng-template #updateUser let-user>
-        <app-users-form [defaultUser]="user"></app-users-form>
+      <ng-template #updateUser>
+        <app-users-form [defaultUser]="selectedUser()"></app-users-form>
       </ng-template>
       }
     </tbody>

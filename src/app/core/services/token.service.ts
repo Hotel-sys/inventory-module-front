@@ -14,7 +14,7 @@ export class TokenService {
   constructor() {}
 
   addToken(token: string) {
-    localStorage.setItem('token', token);
+    localStorage.setItem('token', JSON.stringify(token));
   }
 
   removerToken() {
@@ -22,7 +22,7 @@ export class TokenService {
   }
 
   getToken() {
-    return localStorage.getItem('token');
+    return JSON.parse(localStorage.getItem('token') || '{}');
   }
 
   jwtDecode() {

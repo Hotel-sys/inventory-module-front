@@ -1,5 +1,5 @@
 import { UbDialogContentDirective } from './../../../../../shared/components/dialog';
-import { Component, Input } from '@angular/core';
+import { Component, Input, signal, Signal } from '@angular/core';
 // import { IUser } from 'src/app/core/models/user.model';
 import { UbButtonDirective } from 'src/app/shared/components/button';
 import { UbDialogTriggerDirective } from 'src/app/shared/components/dialog';
@@ -38,4 +38,10 @@ import { CreateQueryResult } from '@tanstack/angular-query-experimental';
 export class UsersListComponent {
   @Input() users: User[] | undefined;
   @Input() isLoading: boolean | undefined;
+
+  selectedUser = signal<User | undefined>(undefined);
+
+  setSelectedUser(user?: User) {
+    this.selectedUser.set(user);
+  }
 }

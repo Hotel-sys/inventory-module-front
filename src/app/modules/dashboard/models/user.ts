@@ -1,5 +1,7 @@
-import { Company } from "./company";
-import { Department } from "./department";
+import { Company } from './company';
+import { Department } from './department';
+
+export type UserRole = 'ADMIN' | 'SUPERADMIN';
 
 export class User {
   name!: string;
@@ -10,6 +12,7 @@ export class User {
   id!: string;
   department?: Department;
   company?: Company;
+  role: UserRole = 'ADMIN';
 
   constructor(name?: string, email?: string) {
     this.name = name ?? '';
@@ -20,21 +23,20 @@ export class User {
 
 export class UserPayload extends User {
   //@ts-ignore
-  override department!: {id: string};
+  override department?: { id: string };
 
   //@ts-ignore
-  override company!: {id: string};
+  override company?: { id: string };
 
-  constructor(name?: string, email?: string){
-    super(name, email)
+  constructor(name?: string, email?: string) {
+    super(name, email);
 
     this.department = {
-      id: ''
-    }
+      id: '',
+    };
 
     this.company = {
-      id: ''
-    }
+      id: '',
+    };
   }
 }
-

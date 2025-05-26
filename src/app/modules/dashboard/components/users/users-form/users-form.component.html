@@ -18,7 +18,7 @@
     <div class="flex flex-col gap-y-2">
       <label for="senha" class="text-sm font-semibold leading-relaxed tracking-wide text-gray-600"> Departments </label>
       <select [(ngModel)]="userPayload.department!.id" name="department" id="department" class="w-full">
-        @for(dep of departments; track $index) {
+        @for(dep of departments; track dep.key) {
         <option [ngValue]="dep.key">
           {{ dep.value }}
         </option>
@@ -28,7 +28,7 @@
     <div class="flex flex-col gap-y-2">
       <label for="senha" class="text-sm font-semibold leading-relaxed tracking-wide text-gray-600"> Company </label>
       <select [(ngModel)]="userPayload.company!.id" name="department" id="department" class="w-full">
-        @for(comp of companies; track $index) {
+        @for(comp of companies; track comp.key) {
         <option [ngValue]="comp.key">
           {{ comp.value }}
         </option>

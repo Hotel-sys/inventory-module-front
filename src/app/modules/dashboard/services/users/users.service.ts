@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { lastValueFrom, Observable, Subscription } from 'rxjs';
 import { buildEndpoint } from 'src/app/core/constants/api-routes';
 // import { IUser } from 'src/app/core/models/user.model';
 import { environment } from 'src/environments/environment';
@@ -17,22 +17,28 @@ export class UsersService {
     this.apiUrl = environment.apiUrl;
   }
 
-  public getAll(): Observable<User[]> {
+  public getAll(): Promise<User[]> {
     const endpoint = buildEndpoint(this.apiUrl, 'USERS_LIST');
 
-    return this.httpClient.get<User[]>(endpoint);
+    return lastValueFrom(this.httpClient.get<User[]>(endpoint));
   }
 
-  public getById(id: string): Observable<User> {
+  public getById(id: string): Promise<User> {
     const endpoint = buildEndpoint(this.apiUrl, 'USER_BY_ID', id);
 
-    return this.httpClient.get<User>(endpoint);
+    return lastValueFrom(this.httpClient.get<User>(endpoint));
   }
 
-  public save(userPayload: UserPayload): Observable<User> {
+  public save(userPayload: UserPayload): Promise<User> {
     const endpoint = buildEndpoint(this.apiUrl, 'USERS_LIST');
 
-    return this.httpClient.post<User>(endpoint, userPayload);
+    return lastValueFrom(
+      this.httpClient.post<User>(endpoint, {
+        ...userPayload,
+        department: userPayload.department?.id === '' ? undefined : userPayload.department,
+        company: userPayload.company?.id === '' ? undefined : userPayload.company,
+      }),
+    );
   }
 
   public delete(id: string): Observable<unknown> {

@@ -1,3 +1,5 @@
+import { UserRole } from 'src/app/modules/dashboard/models/user';
+
 export interface MenuItem {
   group: string;
   separator?: boolean;
@@ -12,5 +14,6 @@ export interface SubMenuItem {
   route?: string | null;
   expanded?: boolean;
   active?: boolean;
+  role: UserRole;
   children?: Array<SubMenuItem>;
 }

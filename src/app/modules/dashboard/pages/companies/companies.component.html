@@ -10,6 +10,6 @@
   <app-companies-list [companies]="companies()" />
 
   <ng-template #dialog>
-    <app-companies-form handleSubmit)="getAll()" />
+    <app-companies-form (handleSubmit)="getAll()" />
   </ng-template>
 </div>

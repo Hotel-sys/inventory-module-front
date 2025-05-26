@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody class="w-full table-auto" ubTableBody>
-      @for(user of users; track $index) {
+      @for(user of users; track user.id) {
       <tr ubTableRow>
         <td ubTableCell>
           {{ user.name }}
@@ -25,10 +25,13 @@
           {{ user.department?.name ?? '' }}
         </td>
         <td ubTableCell>
-          <ubDialogTrigger ubButton size="sm" [ubDialogTrigger]="updateUser">Update</ubDialogTrigger>
+          <ubDialogTrigger ubButton size="sm" [ubDialogTrigger]="updateUser" [ubDialogContext]="user"
+            >Update</ubDialogTrigger
+          >
         </td>
       </tr>
-      <ng-template #updateUser>
+
+      <ng-template #updateUser let-user>
         <app-users-form [defaultUser]="user"></app-users-form>
       </ng-template>
       }

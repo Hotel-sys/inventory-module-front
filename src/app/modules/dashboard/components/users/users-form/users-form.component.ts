@@ -16,6 +16,7 @@ import { IOption } from 'src/app/core/models/globals.model';
 import { CompaniesService } from '../../../services/companies/companies.service';
 import { Company } from '../../../models/company';
 import { UsersService } from '../../../services/users/users.service';
+import { injectMutation, injectQuery, QueryClient } from '@tanstack/angular-query-experimental';
 
 @Component({
   selector: 'app-users-form',
@@ -26,7 +27,6 @@ import { UsersService } from '../../../services/users/users.service';
     UbInputDirective,
     UbButtonDirective,
     FormsModule,
-    UbDialogCloseDirective,
   ],
   templateUrl: './users-form.component.html',
   styleUrl: './users-form.component.css',
@@ -35,6 +35,7 @@ export class UsersFormComponent {
   userPayload: UserPayload = new UserPayload();
 
   private userService = inject(UsersService);
+  private queryClient = inject(QueryClient);
 
   private departmentService = inject(DepartmentsService);
   private companyService = inject(CompaniesService);
@@ -45,39 +46,45 @@ export class UsersFormComponent {
   @Input() defaultUser?: User;
   @Output() handleSubmit = new EventEmitter<User>();
 
+  user = injectQuery(() => ({
+    queryKey: ['user', this.defaultUser?.id],
+    queryFn: () => this.userService.getById(this.defaultUser?.id as string),
+    enabled: !!this.defaultUser?.id,
+    onSuccess: (data: User) => {
+      this.userPayload = {
+        ...data,
+        department: data.department
+          ? {
+              id: data.department.id,
+            }
+          : undefined,
+        company: data.company
+          ? {
+              id: data.company.id,
+            }
+          : undefined,
+      };
+    },
+  }));
+
+  mutation = injectMutation(() => ({
+    mutationFn: (userPayload: UserPayload) => this.userService.save(userPayload),
+    onSuccess: (data) => {
+      this.handleSubmit.emit(data);
+      this.queryClient.invalidateQueries({ queryKey: ['users'] });
+    },
+  }));
+
   constructor() {
     this.getAllDepartments();
     this.getAllCompanies();
 
-    this.populateFields();
+    console.log(this.defaultUser);
+    // this.populateFields();
   }
 
   onSubmit() {
-    this.userService.save(this.userPayload).subscribe({
-      next: (data) => {
-        this.handleSubmit.emit(data);
-      },
-    });
-  }
-
-  private populateFields() {
-    if (this.defaultUser) {
-      // we are editing...
-
-      this.userService.getById(this.defaultUser.id).subscribe({
-        next: (data) => {
-          this.userPayload = {
-            ...data,
-            department: {
-              id: data.department?.id ?? '',
-            },
-            company: {
-              id: data.company?.id ?? '',
-            },
-          };
-        },
-      });
-    }
+    this.mutation.mutate(this.userPayload);
   }
 
   private getAllDepartments() {

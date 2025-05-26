@@ -15,6 +15,7 @@ import {
   // UbDialogTriggerDirective,
   // UbDialogContentDirective
 } from 'src/app/shared/components/table';
+import { CreateQueryResult } from '@tanstack/angular-query-experimental';
 
 @Component({
   selector: 'users-list',
@@ -35,6 +36,6 @@ import {
   styleUrl: './users-list.component.css',
 })
 export class UsersListComponent {
-  @Input() users: User[] = [];
-  @Input() loadingState: boolean = false;
+  @Input() users: User[] | undefined;
+  @Input() isLoading: boolean | undefined;
 }

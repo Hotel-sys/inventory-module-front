@@ -1,11 +1,12 @@
 import { enableProdMode, importProvidersFrom } from '@angular/core';
-
+import { provideTanStackQuery, QueryClient } from '@tanstack/angular-query-experimental';
 import { environment } from './environments/environment';
 import { AppComponent } from './app/app.component';
 import { AppRoutingModule } from './app/app-routing.module';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { httpInterceptor } from './app/core/interceptor';
 
 if (environment.production) {
   enableProdMode();
@@ -15,7 +16,12 @@ if (environment.production) {
 }
 
 bootstrapApplication(AppComponent, {
-  providers: [importProvidersFrom(BrowserModule, AppRoutingModule), provideAnimations(), provideHttpClient()],
+  providers: [
+    importProvidersFrom(BrowserModule, AppRoutingModule),
+    provideAnimations(),
+    provideHttpClient(withInterceptors([httpInterceptor])),
+    provideTanStackQuery(new QueryClient()),
+  ],
 }).catch((err) => console.error(err));
 
 function selfXSSWarning() {

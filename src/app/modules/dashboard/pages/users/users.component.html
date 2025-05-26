@@ -7,9 +7,9 @@
     <ubDialogTrigger ubButton [ubDialogTrigger]="dialog"> New User </ubDialogTrigger>
   </div>
 
-  <users-list [users]="users()" [loadingState]="isLoading()" />
+  <users-list [users]="users.data()" [isLoading]="users.isLoading()" />
 
   <ng-template #dialog>
-    <app-users-form (handleSubmit)="getAll()" />
+    <app-users-form (handleSubmit)="users.refetch()" />
   </ng-template>
 </div>

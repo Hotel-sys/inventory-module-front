@@ -1,9 +1,10 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import packageJson from '../../../../../../package.json';
 import { MenuService } from '../../services/menu.service';
 import { SidebarMenuComponent } from './sidebar-menu/sidebar-menu.component';
+import { TokenService } from 'src/app/core/services/token.service';
 
 @Component({
   selector: 'app-sidebar',

@@ -21,4 +21,10 @@ export class UsersComponent {
     queryKey: ['users'],
     queryFn: () => this.httpClient.getAll(),
   }));
+
+  constructor() {
+    if (this.users.data()) {
+      console.log(this.users.data());
+    }
+  }
 }

@@ -6,13 +6,13 @@ export const superAdminGuard: CanActivateFn = (route, state) => {
   const tokenService = inject(TokenService);
   const router = inject(Router);
 
-  if (tokenService.isGuest()) {
-    router.navigate(['/auth/sign-in']);
-    return false;
-  }
+  // if (tokenService.isGuest()) {
+  //   router.navigate(['/auth/sign-in']);
+  //   return false;
+  // }
 
   if (!tokenService.hasRole('SUPERADMIN')) {
-    router.navigate(['/']);
+    router.navigate(['/dashboard']);
     return false;
   }
 

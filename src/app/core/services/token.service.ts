@@ -22,7 +22,7 @@ export class TokenService {
   }
 
   getToken() {
-    return JSON.parse(localStorage.getItem('token') || '{}');
+    return JSON.parse(localStorage.getItem('token') || '{}') as string;
   }
 
   jwtDecode() {

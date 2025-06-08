@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { lastValueFrom, Observable, Subscription } from 'rxjs';
 import { buildEndpoint } from 'src/app/core/constants/api-routes';
 // import { IUser } from 'src/app/core/models/user.model';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { User, UserPayload } from '../../models/user';
 
 @Injectable({

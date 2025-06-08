@@ -17,7 +17,7 @@ export class LoginService {
   }
 
   login(data: LoginRequest): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(this.apiUrl.concat('/api/auth/login'), data, {
+    return this.http.post<LoginResponse>(this.apiUrl.concat('/auth/login'), data, {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',

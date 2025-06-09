@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class LoginService {
   http = inject(HttpClient);
-  // API = 'http://localhost:8080/api/auth/login';
   apiUrl = '';
 
   constructor() {
